@@ -1,7 +1,10 @@
-node {
-  stage ('Build') {
-    withMaven {
-      sh "mvn clean verify"
-    } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
-  }
+pipeline {
+ agent { docker { image 'maven:3.3.3' } }
+ stages {
+     stage('build') {
+         steps {
+             sh 'mvn clean package'
+         }
+     }
+ }
 }
