@@ -3,8 +3,20 @@ pipeline {
  stages {
      stage('build') {
          steps {
-             sh 'mvn clean package'
+             echo 'Building...'
+             sh 'mvn clean'
          }
+     }
+     stage('Test') {
+          steps {
+              echo 'Testing..'
+              sh 'mvn package'
+          }
+     }
+     stage('Deploy') {
+           steps{
+               echo 'Deploying....'
+           }
      }
  }
 }

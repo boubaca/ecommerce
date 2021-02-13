@@ -1,3 +1,4 @@
+com\example\demo\controllers\HomeController.class
 com\example\demo\controllers\ItemController.class
 com\example\demo\controllers\UserController.class
 com\example\demo\controllers\OrderController.class
