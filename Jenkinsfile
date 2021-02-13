@@ -16,7 +16,14 @@ pipeline {
      stage('Deploy') {
            steps{
                echo 'Deploying....'
+               sh 'docker build -t springio/auth-course .'
            }
+     }
+     stage('deploy to docker'){
+          steps{
+               echo 'running in docker ..'
+               sh 'docker run -d -p 8082:8082 springio/auth-course'
+          }
      }
  }
 }
