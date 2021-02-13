@@ -1,6 +1,4 @@
 FROM openjdk:8-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+LABEL maintainer="barry.boubacar@b-hitech.com"
+COPY /target/auth-course-0.0.1-SNAPSHOT.jar /home/auth-course-0.0.1-SNAPSHOT.jar
+CMD ["java","-jar","/home/auth-course-0.0.1-SNAPSHOT.jar"]
