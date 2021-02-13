@@ -4,26 +4,20 @@ pipeline {
      stage('build') {
          steps {
              echo 'Building...'
-             sh 'mvn clean'
+             sh 'mvn clean install'
          }
      }
-     stage('Test') {
-          steps {
-              echo 'Testing..'
-              sh 'mvn package'
-          }
-     }
-     stage('Deploy') {
-           steps{
-               echo 'Deploying....'
-               sh 'docker build -t springio/auth-course .'
+     stage('Docker Build') {
+           agent any
+           steps {
+             sh 'docker build -t barry/auth-course:latest .'
            }
      }
-     stage('deploy to docker'){
-          steps{
-               echo 'running in docker ..'
-               sh 'docker run -d -p 8082:8082 springio/auth-course'
-          }
+     stage('Docker Push') {
+           agent any
+           steps {
+               sh 'docker push barry/auth-course:latest'
+         }
      }
  }
 }
