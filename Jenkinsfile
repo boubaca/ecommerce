@@ -7,14 +7,10 @@ pipeline {
              sh 'mvn clean install'
          }
      }
-     stage('Initialize'){
-             steps{
-               def dockerHome = tool 'mydocker'
-               env.PATH = "${dockerHome}/bin:${env.PATH}"
-             }
-     }
      stage('Docker Build') {
            agent any
+           def dockerHome = tool 'mydocker'
+           env.PATH = "${dockerHome}/bin:${env.PATH}"
            steps {
              sh 'docker build -t barry/auth-course:latest .'
            }
